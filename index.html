@@ -6,27 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather:By Winnie</title>
     <link rel="stylesheet" href="src/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <div class="weather-app">
     <header>
-        <form>
-            <input type="search" placeholder="Enter a city..." required/>
-            <input type="submit" value="Search" />
+        <form class="search-form">
+            <input type="search" placeholder="Enter a city..." required class="search-form-input"/>
+            <input type="submit" value="Search" class="search-form-button" />
         </form>
     </header>
     <main>
         <div>
-            <h1> Kasane</h1>
-            <p>
+            <h1 class="weather-app-city"> Kasane</h1>
+            <p class="weather-app-details">
                 Sunday 21:56, clear sky
                 <br />
-                Humidity: 44%, Wind: 13km/h
+                Humidity: <strong>44%</strong>, Wind: <strong>13km/h</strong>
             </p>
             </div>
-            <div>
-        17°C
+            <div class ="weather-app-temperature-container">
+                <div class = "weather-app-icon"> emoji </div>
+        <div class = "weather-app-temperature"> 17</div>
+                <div class ="weather-app-unit"> °C </div>
         </div>
+    </div>
     </main>
     <footer>
         This project was coded by 
