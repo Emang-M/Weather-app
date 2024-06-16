@@ -1,24 +1,3 @@
-function currentDate (date) {
-  let minutes= date.getMinutes ();
-  let hours= date.getHours();
-  let days= [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    ];
-  let day= days[date.getDay()];
-  
-  if (minutes < 10) {
-    minutes= '0${minutes}';
-  }
-
-  return '${day} {$hours}:${minutes}';
-}
-
 function currentWeather (response) {
    let temperatureElement= document.queruSelector("#temperature");
   let temperature=response.data.temperature.current;
@@ -39,6 +18,26 @@ function currentWeather (response) {
   iconElement.innerHTML='<img src="${response.data.condition.icon_url}" class="weather-app-icon" />';
 }
 
+function currentDate (date) {
+  let minutes= date.getMinutes ();
+  let hours= date.getHours();
+  let days= [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    ];
+  let day= days[date.getDay()];
+  
+  if (minutes < 10) {
+    minutes= '0${minutes}';
+  }
+
+  return '${day} {$hours}:${minutes}';
+}
 function searchCity(city){
   let apiKey="0f6t1343a48ff0048aobd2eb29a74987";
     let apiUrl=''https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric';
