@@ -1,23 +1,3 @@
-function currentWeather (response) {
-   let temperatureElement= document.queruSelector("#temperature");
-  let temperature=response.data.temperature.current;
-  let cityElement= document.querySelector("#city");
-  let descriptionElement=document.querySelector("#description");
-  let humidityElement=document.querySelector("#humidity");
-  let windSpeedElement=document.querySelector("#wind-speed");
-  let timeElement=document.querySelector ("#time");
-  let date= newDate (response.data.time*1000);
-  let iconElement= document.querySelector("#icon");
-
-  cityElement.innerHTML= response.data.city;
-  timeElement.innerHTML= currentDate(date);
-  descriptionElement.innerHTML= response.data.condition.description;
-  humidityElement.innerHTML= '${response.data.humidity}%';
-  windSpeedElement.innerHTML='${response.data.wind.speed}km/h';
-  temperatureElement.innerHTML=Math.round(temperature);
-  iconElement.innerHTML='<img src="${response.data.condition.icon_url}" class="weather-app-icon" />';
-}
-
 function currentDate (date) {
   let minutes= date.getMinutes ();
   let hours= date.getHours();
@@ -39,9 +19,29 @@ function currentDate (date) {
   return '${day} {$hours}:${minutes}';
 }
 
+function currentWeather (response) {
+   let temperatureElement= document.queruSelector("#temperature");
+  let temperature=response.data.temperature.current;
+  let cityElement= document.querySelector("#city");
+  let descriptionElement=document.querySelector("#description");
+  let humidityElement=document.querySelector("#humidity");
+  let windSpeedElement=document.querySelector("#wind-speed");
+  let timeElement=document.querySelector ("#time");
+  let date= newDate (response.data.time*1000);
+  let iconElement= document.querySelector("#icon");
+
+  cityElement.innerHTML= response.data.city;
+  timeElement.innerHTML= currentDate(date);
+  descriptionElement.innerHTML= response.data.condition.description;
+  humidityElement.innerHTML= '${response.data.humidity}%';
+  windSpeedElement.innerHTML='${response.data.wind.speed}km/h';
+  temperatureElement.innerHTML=Math.round(temperature);
+  iconElement.innerHTML='<img src="${response.data.condition.icon_url}" class="weather-app-icon" />';
+}
+
 function searchCity(city){
-  let apiKey=
-    let apiUrl=
+  let apiKey="0f6t1343a48ff0048aobd2eb29a74987";
+    let apiUrl=''https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric';
     axios.get(apiUrl).then(currentWeather);
 }
 
