@@ -64,5 +64,3 @@ let searchFormElement= document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", searchSubmit);
 
 searchSubmit("Kasane");
-
-
