@@ -2,28 +2,33 @@ function currentWeather(response) {
   console.log(response);
   let temperatureElement= document.querySelector("#temperature");
   let temperature=response.data.temperature.current;
-  let cityElement= document.querySelector("#city");
-   
-  let descriptionElement=document.querySelector("#description");
-  let humidityElement=document.querySelector("#humidity");
-  let windSpeedElement=document.querySelector("#wind-speed");
-  let timeElement=document.querySelector("#time");
-  let date= new Date(response.data.time*1000);
-   
-  let iconElement= document.querySelector("#icon");
+    temperatureElement.innerHTML=Math.round(temperature);
 
-  cityElement.innerHTML= response.data.city;
-  timeElement.innerHTML= currentDate(date);
-  descriptionElement.innerHTML= response.data.condition.description;
-  humidityElement.innerHTML= '${response.data.temperature.humidity}%';
-  windSpeedElement.innerHTML='${response.data.wind.speed}km/h';
-  temperatureElement.innerHTML=Math.round(temperature);
-  iconElement.innerHTML='<img src="${response.data.condition.icon_url}" class="weather-app-icon"/>';
+  let cityElement= document.querySelector("#city");
+    cityElement.innerHTML= response.data.city;
+
+     let descriptionElement=document.querySelector("#description");
+    descriptionElement.innerHTML= response.data.condition.description;
+
+  let humidityElement=document.querySelector("#humidity");
+    humidityElement.innerHTML= '${response.data.temperature.humidity}%';
+
+  let windSpeedElement=document.querySelector("#wind-speed");
+    windSpeedElement.innerHTML='${response.data.wind.speed}km/h';
+
+  let timeElement=document.querySelector("#time");
+  let timeStamp=response.data.time * 1000;
+  let date= new Date(timeStamp);
+    timeElement.innerHTML= currentDate(date);
+
+   let iconElement= document.querySelector("#icon");
+iconElement.innerHTML='<img src="${response.data.condition.icon_url}" class="weather-app-icon"/>';
 }
 
 function currentDate(date) {
   let minutes= date.getMinutes();
   let hours= date.getHours();
+  
   let days= [
     "Sunday",
     "Monday",
@@ -39,25 +44,25 @@ function currentDate(date) {
     minutes= '0${minutes}';
   }
 
+  if (hours < 10) {
+    hours= '0${hours}';
+
   return '${day} {$hours}:${minutes}';
 }
 
-function searchCity(city){
-  let apiKey="0f6t1343a48ff0048aobd2eb29a74987";
-    let apiUrl='https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric';
-    axios.get(apiUrl).then(currentWeather);
-}
 
 function searchSubmit(event) {
   event.preventDefault();
   let searchInput= document.querySelector("#search-form-input");
-
-  searchCity(searchInput.value);
+  let searchCity= searchInput.value;
+  let apiKey="0f6t1343a48ff0048aobd2eb29a74987";
+    let apiUrl='https://api.shecodes.io/weather/v1/current?query=${searchCity}&key=${apiKey}&units=metric';
+    axios.get(apiUrl).then(currentWeather);
 }
 
 let searchFormElement= document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", searchSubmit);
 
-searchCity("Kasane");
+searchSubmit("Kasane");
 
 
