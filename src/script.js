@@ -2,6 +2,7 @@ function currentWeather (response) {
    let temperatureElement= document.querySelector("#temperature");
   let temperature=response.data.temperature.current;
   let cityElement= document.querySelector("#city");
+   
   let descriptionElement=document.querySelector("#description");
   let humidityElement=document.querySelector("#humidity");
   let windSpeedElement=document.querySelector("#wind-speed");
@@ -19,7 +20,7 @@ function currentWeather (response) {
 }
 
 function currentDate (date) {
-  let minutes= date.getMinutes ();
+  let minutes= date.getMinutes();
   let hours= date.getHours();
   let days= [
     "Sunday",
@@ -38,6 +39,7 @@ function currentDate (date) {
 
   return '${day} {$hours}:${minutes}';
 }
+
 function searchCity(city){
   let apiKey="0f6t1343a48ff0048aobd2eb29a74987";
     let apiUrl='https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric';
@@ -48,7 +50,7 @@ function searchSubmit (event) {
   event.preventDefault ();
   let searchInput= document.querySelector("#search-form-input");
 
-  searchCity (searchInput.value);
+  searchCity(searchInput.value);
 }
 
 let searchFormElement= document.querySelector("#search-form");
